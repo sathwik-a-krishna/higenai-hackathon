@@ -1,24 +1,10 @@
-import vertexai
-from vertexai.language_models import TextGenerationModel
-
-vertexai.init(project="gen-higenai-team", location="us-central1")
-parameters = {
-    "temperature": 0.2,
-    "max_output_tokens": 256,
-    "top_p": 0.8,
-    "top_k": 40
-}
-model = TextGenerationModel.from_pretrained("text-bison@001")
-response = model.predict(
-    """hello world""",
-    **parameters
-)
-print(f"Response from Model: {response.text}")
 # Using flask to make an api
 # import necessary libraries and functions
+from prompt import ProductGen
 from flask import Flask, jsonify, request
   
 # creating a Flask app
+PG = ProductGen()
 app = Flask(__name__)
 # hello
 # on the terminal type: curl http://127.0.0.1:5000/
@@ -27,7 +13,7 @@ app = Flask(__name__)
 @app.route('/', methods = ['GET', 'POST'])
 def home():
     if(request.method == 'GET'):
-  
+        PG.predict("""a boy wearing Argentina\'s football jersey""")
         data = "hello world"
         return jsonify({'data': data})
   
