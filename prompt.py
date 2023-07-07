@@ -1,5 +1,5 @@
 import vertexai
-from vertexai.language_models import TextGenerationModel
+from vertexai.preview.language_models import TextGenerationModel
 
 class ProductGen:
 
@@ -76,9 +76,9 @@ class ProductGen:
         \"brand\":\"Insufficient data\"
         }
 
-        input: short description: \"\"\" {} \"\"\"
+        input: short description: \"\"\" """ +input_text+""" \"\"\"
         output:
-        """.format(input_text),
+        """,
             **self.parameters
         )
         

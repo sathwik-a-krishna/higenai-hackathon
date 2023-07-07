@@ -13,9 +13,8 @@ app = Flask(__name__)
 @app.route('/', methods = ['GET', 'POST'])
 def home():
     if(request.method == 'GET'):
-        PG.predict("""a boy wearing Argentina\'s football jersey""")
-        data = "hello world"
-        return jsonify({'data': data})
+        p_out = PG.predict("""a boy wearing Argentina\'s football jersey""")
+        return jsonify(p_out)
   
   
 # A simple function to calculate the square of a number
