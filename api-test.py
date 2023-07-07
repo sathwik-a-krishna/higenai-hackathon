@@ -10,10 +10,11 @@ app = Flask(__name__)
 # on the terminal type: curl http://127.0.0.1:5000/
 # returns hello world when we use GET.
 # returns the data that we send when we use POST.
-@app.route('/', methods = ['GET', 'POST'])
-def home():
+@app.route('/<str:desc>', methods = ['GET', 'POST'])
+def home(desc):
+    desc = desc.replace("_"," ")
     if(request.method == 'GET'):
-        p_out = PG.predict("""a boy wearing Argentina\'s football jersey""")
+        p_out = PG.predict(desc)
         return jsonify(p_out)
   
   
