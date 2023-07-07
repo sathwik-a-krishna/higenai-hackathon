@@ -10,7 +10,7 @@ parameters = {
 }
 model = TextGenerationModel.from_pretrained("text-bison@001")
 response = model.predict(
-    """""",
+    """hello world""",
     **parameters
 )
 print(f"Response from Model: {response.text}")
